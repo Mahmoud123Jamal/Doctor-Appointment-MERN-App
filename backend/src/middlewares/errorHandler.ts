@@ -6,7 +6,11 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  console.error(" Error:", err.message);
+  console.error("Error:", err.message);
+
+  if (res.headersSent) {
+    return next(err);
+  }
 
   res.status(err.statusCode || 500).json({
     success: false,
