@@ -4,7 +4,7 @@ import User from "../models/userModel";
 import { catchAsync } from "../utils/catchAsync";
 import { generateToken } from "../utils/JWT";
 export const register = catchAsync(async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role = "user" } = req.body;
 
   if (!name || !email || !password) {
     return res
@@ -28,10 +28,11 @@ export const register = catchAsync(async (req: Request, res: Response) => {
     name,
     email,
     password: hashedPassword,
+    role,
   });
 
   //Generate JWT
-  const token = generateToken(newUser.email, newUser._id);
+  const token = generateToken(newUser.email, newUser._id, newUser.role);
 
   return res
     .status(201)
@@ -39,7 +40,7 @@ export const register = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const login = catchAsync(async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, role = "user" } = req.body;
 
   if (!email || !password) {
     return res
@@ -59,7 +60,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
       .status(401)
       .json({ status: "fail", data: { message: "Invalid credentials" } });
   }
-  const token = generateToken(user.email, user._id);
+  const token = generateToken(user.email, user._id, user.role);
 
   return res.status(200).json({ status: "success", data: { user, token } });
 });
