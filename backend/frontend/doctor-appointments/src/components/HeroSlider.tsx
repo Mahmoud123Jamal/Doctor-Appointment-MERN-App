@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import slide1 from "../images/slide1.jpg";
 import slide2 from "../images/slide2.jpg";
-import slide3 from "../images/slide3.webp";
+import slide3 from "../images/slide3.jpg";
 
 function HeroSlider() {
   const settings = {
@@ -39,7 +39,7 @@ function HeroSlider() {
     <section className="relative h-[80vh] w-full overflow-hidden">
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          <div key={index} className="h-[80vh] relative">
+          <div key={index} className="h-[80vh] relative w-full">
             <img
               src={slide.image}
               alt=""
@@ -51,6 +51,9 @@ function HeroSlider() {
                 {slide.title}
               </h2>
               <p className="text-lg md:text-2xl">{slide.description}</p>
+              <button className="text-3xl/tight text-teal-500 bg-white px-6 py-3 mt-12 rounded-sm  hover:bg-gray-200 transition">
+                Read more
+              </button>
             </div>
           </div>
         ))}

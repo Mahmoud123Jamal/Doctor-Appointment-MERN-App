@@ -2,8 +2,8 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const RootLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="bg-blue-600 text-white p-4">
+    <div className="flex flex-col min-h-screen w-full">
+      <header className="bg-blue-600 text-white p-6 ">
         <nav>
           <ul className="flex space-x-4">
             <li>
