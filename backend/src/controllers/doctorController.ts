@@ -40,6 +40,17 @@ export const getDoctorById = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const countDoctors = catchAsync(async (req: Request, res: Response) => {
-  const doctorCount = await Doctor.countDocuments();
-  res.status(200).json({ status: "success", data: { count: doctorCount } });
+  const doctorCount: number = await Doctor.countDocuments();
+
+  if (doctorCount === undefined || doctorCount === null) {
+    return res.status(500).json({
+      status: "error",
+      message: "Error fetching departments count",
+    });
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: { count: doctorCount },
+  });
 });
