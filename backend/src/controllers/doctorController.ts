@@ -38,3 +38,8 @@ export const getDoctorById = catchAsync(async (req: Request, res: Response) => {
   }
   res.status(200).json({ status: "success", data: { doctor } });
 });
+
+export const countDoctors = catchAsync(async (req: Request, res: Response) => {
+  const doctorCount = await Doctor.countDocuments();
+  res.status(200).json({ status: "success", data: { count: doctorCount } });
+});
