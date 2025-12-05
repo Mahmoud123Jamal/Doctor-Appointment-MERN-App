@@ -1,7 +1,8 @@
 import Slider from "react-slick";
-import slide1 from "../images/slide1.jpg";
-import slide2 from "../images/slide2.jpg";
-import slide3 from "../images/slide3.jpg";
+import slide1 from "../assets/images/slide1.jpg";
+import slide2 from "../assets/images/slide2.jpg";
+import slide3 from "../assets/images/slide3.jpg";
+import React from "react";
 
 function HeroSlider() {
   const settings = {
@@ -14,6 +15,8 @@ function HeroSlider() {
     autoplaySpeed: 2500,
     pauseOnHover: false,
     arrows: false,
+    centerMode: false,
+    variableWidth: false,
     cssEase: "linear",
   };
 
@@ -37,12 +40,12 @@ function HeroSlider() {
 
   return (
     <section className="relative h-[80vh] w-full overflow-hidden">
-      <Slider {...settings}>
+      <Slider {...settings} className="slider-container" style={{ margin: 0 }}>
         {slides.map((slide, index) => (
-          <div key={index} className="h-[80vh] relative w-full">
+          <div key={index} className="h-[80vh] w-full relative">
             <img
               src={slide.image}
-              alt=""
+              alt="slider-image"
               className="w-full h-full object-cover"
             />
 
@@ -51,8 +54,8 @@ function HeroSlider() {
                 {slide.title}
               </h2>
               <p className="text-lg md:text-2xl">{slide.description}</p>
-              <button className="text-3xl/tight text-teal-500 bg-white px-6 py-3 mt-12 rounded-sm  hover:bg-gray-200 transition">
-                Read more
+              <button className="text-3xl/tight text-teal-500 bg-white px-6 py-3 mt-6 rounded-sm  hover:bg-gray-200 transition">
+                Read More
               </button>
             </div>
           </div>
@@ -62,4 +65,4 @@ function HeroSlider() {
   );
 }
 
-export default HeroSlider;
+export default React.memo(HeroSlider);
