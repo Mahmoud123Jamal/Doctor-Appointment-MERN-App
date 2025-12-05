@@ -1,7 +1,7 @@
 declare module "react-slick" {
   import { ComponentType } from "react";
 
-  interface Settings {
+  export interface Settings {
     dots?: boolean;
     infinite?: boolean;
     speed?: number;
@@ -9,7 +9,7 @@ declare module "react-slick" {
     slidesToScroll?: number;
     autoplay?: boolean;
     autoplaySpeed?: number;
-    [key: string]: any; // لتجنب الأخطاء مع الخصائص الأخرى
+    [key: string]: any;
   }
 
   const Slider: ComponentType<{
