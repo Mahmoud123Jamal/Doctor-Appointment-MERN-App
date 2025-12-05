@@ -1,5 +1,7 @@
-import About from "./About";
+import CallToAction from "../components/CallToAction";
+
 import React, { Suspense } from "react";
+import About from "./About";
 const HeroSlider = React.lazy(() => import("../components/HeroSlider"));
 const Home = () => {
   return (
@@ -10,6 +12,7 @@ const Home = () => {
         <HeroSlider />
       </Suspense>
 
+      <CallToAction />
       <About />
     </>
   );
