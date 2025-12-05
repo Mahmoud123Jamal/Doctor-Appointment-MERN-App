@@ -3,24 +3,10 @@ import slide1 from "../assets/images/slide1.jpg";
 import slide2 from "../assets/images/slide2.jpg";
 import slide3 from "../assets/images/slide3.jpg";
 import React from "react";
-
+import { heroSliderSettings as settings } from "../config/sliderSettings";
+import type { SlideItem } from "../types/slideTypes";
 function HeroSlider() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500,
-    pauseOnHover: false,
-    arrows: false,
-    centerMode: false,
-    variableWidth: false,
-    cssEase: "linear",
-  };
-
-  const slides = [
+  const slides: SlideItem[] = [
     {
       image: slide1,
       title: "Comprehensive Healthcare Services",
@@ -50,11 +36,11 @@ function HeroSlider() {
             />
 
             <div className="absolute inset-0 bg-black/30 flex flex-col justify-center items-center text-white p-4">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <h2 className="text-lg md:text-5xl font-bold mb-4 text-center">
                 {slide.title}
               </h2>
               <p className="text-lg md:text-2xl">{slide.description}</p>
-              <button className="text-3xl/tight text-teal-500 bg-white px-6 py-3 mt-6 rounded-sm  hover:bg-gray-200 transition">
+              <button className="btn btn-soft btn-primary mt-4 rounded-sm transition">
                 Read More
               </button>
             </div>
