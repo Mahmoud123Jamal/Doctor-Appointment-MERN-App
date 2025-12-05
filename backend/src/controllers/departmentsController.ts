@@ -32,3 +32,21 @@ export const createDepartment = catchAsync(
     return res.status(201).json({ status: "success", data: { department } });
   }
 );
+
+export const countDepartments = catchAsync(
+  async (req: Request, res: Response) => {
+    const departmentsCount: number = await Departments.countDocuments();
+
+    if (departmentsCount === undefined || departmentsCount === null) {
+      return res.status(500).json({
+        status: "error",
+        message: "Error fetching departments count",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: { count: departmentsCount },
+    });
+  }
+);
