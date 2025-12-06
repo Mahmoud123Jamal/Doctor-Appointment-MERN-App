@@ -4,6 +4,8 @@ import { protect } from "../middlewares/authMiddleware";
 import {
   createDepartment,
   countDepartments,
+  getAllDepartments,
+  getDepartmentById,
 } from "../controllers/departmentsController";
 import { authRole } from "../middlewares/roleMiddleware";
 import { multerErrorHandler } from "../middlewares/multerErrorHandler";
@@ -17,4 +19,7 @@ router.post(
   createDepartment
 );
 router.get("/count", countDepartments);
+router.get("/allDepartments", getAllDepartments);
+router.get("/:id", getDepartmentById);
+
 export default router;
