@@ -33,6 +33,26 @@ export const createDepartment = catchAsync(
   }
 );
 
+export const getAllDepartments = catchAsync(
+  async (req: Request, res: Response) => {
+    const departments = await Departments.find();
+    res.status(200).json({ status: "success", data: { departments } });
+  }
+);
+
+export const getDepartmentById = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const department = await Departments.findById(id);
+    if (!department) {
+      return res
+        .status(404)
+        .json({ status: "fail", data: { message: "Department not found." } });
+    }
+    res.status(200).json({ status: "success", data: { department } });
+  }
+);
+
 export const countDepartments = catchAsync(
   async (req: Request, res: Response) => {
     const departmentsCount: number = await Departments.countDocuments();
