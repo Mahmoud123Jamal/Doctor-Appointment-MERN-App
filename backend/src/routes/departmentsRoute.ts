@@ -16,5 +16,5 @@ router.post(
   //   multerErrorHandler,
   createDepartment
 );
-router.get("/countDepartments", countDepartments);
+router.get("/count", countDepartments);
 export default router;
