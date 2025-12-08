@@ -4,6 +4,8 @@ import About from "./pages/About";
 import RootLayout from "./layouts/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
 import Login from "./components/Login";
+import Register from "./components/Register";
+import AddAppointments from "./components/AddAppointments";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,8 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/about", element: <About /> },
       { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/addAppointment", element: <AddAppointments /> },
     ],
   },
 ]);
