@@ -7,18 +7,17 @@ import axios, {
 
 const api: AxiosInstance = axios.create({
   baseURL: import.meta.env.API_URL || "http://localhost:5000/api",
-  timeout: 15000,
+  timeout: 300000,
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
 });
 
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
 
-    if (token) {
+    if (token && !config.url?.includes("/login")) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
