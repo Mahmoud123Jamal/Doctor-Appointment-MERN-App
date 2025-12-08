@@ -115,6 +115,7 @@ function AddDoctor() {
                 <label className="block mb-1 font-medium">Doctor Name</label>
                 <input
                   {...register("name")}
+                  type="text"
                   className="input input-primary w-full"
                   placeholder="Doctor name"
                 />
@@ -127,6 +128,7 @@ function AddDoctor() {
                 <label className="block mb-1 font-medium">Specialization</label>
                 <input
                   {...register("specialization")}
+                  type="text"
                   className="input input-primary w-full"
                   placeholder="Specialization"
                 />
