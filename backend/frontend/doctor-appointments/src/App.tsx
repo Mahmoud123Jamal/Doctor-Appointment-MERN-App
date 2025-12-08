@@ -6,6 +6,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import AddAppointments from "./components/AddAppointments";
+import AddDoctor from "./components/AddDoctor";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/addAppointment", element: <AddAppointments /> },
+      { path: "/addDoctor", element: <AddDoctor /> },
     ],
   },
 ]);
