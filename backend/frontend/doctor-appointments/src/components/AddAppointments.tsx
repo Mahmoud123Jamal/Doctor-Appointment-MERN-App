@@ -1,20 +1,11 @@
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import type { Doctor } from "../types/DoctorType";
 import type { AppointmentFormInputs } from "../types/AppointmentType";
-
-const schema = yup.object().shape({
-  doctor: yup.string().required("Doctor is required"),
-  date: yup.string().required("Date is required"),
-  reason: yup
-    .string()
-    .required("Reason is required")
-    .min(5, "Reason must be at least 5 characters"),
-});
+import { AppointmentSchema } from "../validations/appointmentSchema";
 
 function AddAppointments() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -26,7 +17,7 @@ function AddAppointments() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<AppointmentFormInputs>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(AppointmentSchema),
   });
 
   useEffect(() => {
