@@ -7,8 +7,12 @@ const storage = Multer.diskStorage({
     cb(null, path.join(__dirname, "../../public/uploads"));
   },
   filename: (req: Request, file, cb) => {
-    const uniqeName = `${Date.now()}-${file.originalname}`;
-    cb(null, uniqeName);
+    const ext = path.extname(file.originalname);
+    const uniqueName = `${Date.now()}-${file.originalname.replace(
+      ext,
+      ""
+    )}${ext}`;
+    cb(null, uniqueName);
   },
 });
 const fileFilter = (
