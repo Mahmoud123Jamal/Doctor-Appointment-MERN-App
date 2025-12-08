@@ -3,7 +3,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import type { LoginFormInputs } from "../types/LoginFormInputsTypes";
+import type { LoginFormInputs } from "../types/FormInputsTypes";
 
 function Login() {
   const { login } = useAuth();
