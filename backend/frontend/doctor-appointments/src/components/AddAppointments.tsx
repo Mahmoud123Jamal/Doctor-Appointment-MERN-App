@@ -3,12 +3,12 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
-import type { Doctor } from "../types/DoctorType";
+import type { DoctorForAppiontments } from "../types/DoctorType";
 import type { AppointmentFormInputs } from "../types/AppointmentType";
 import { AppointmentSchema } from "../validations/appointmentSchema";
 
 function AddAppointments() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [doctors, setDoctors] = useState<DoctorForAppiontments[]>([]);
   const [serverError, setServerError] = useState("");
   const { user } = useAuth();
   const {
