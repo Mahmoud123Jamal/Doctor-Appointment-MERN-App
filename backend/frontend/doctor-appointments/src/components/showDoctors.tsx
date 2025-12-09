@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
-import type { Doctor } from "../types/DoctorType";
+import type { showDoctor } from "../types/DoctorType";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 
 function ShowDoctors() {
   const [serverError, setServerError] = useState<string | null>(null);
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [doctors, setDoctors] = useState<showDoctor[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -71,9 +71,9 @@ function ShowDoctors() {
             <figure className="w-24 h-30">
               <img
                 src={
-                  doctor.image instanceof FileList
-                    ? URL.createObjectURL(doctor.image[0])
-                    : doctor.image || "/avatar.jpg"
+                  typeof doctor.image === "string"
+                    ? doctor.image
+                    : "/avatar.jpg"
                 }
                 alt={doctor.name}
                 className="w-full h-full object-cover rounded-l-lg"
