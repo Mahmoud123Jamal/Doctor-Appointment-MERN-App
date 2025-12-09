@@ -9,3 +9,6 @@ export interface Doctor extends Omit<DoctorForAppiontments, "_id"> {
   experience: number;
   image: FileList | null;
 }
+export interface showDoctor extends Omit<Doctor, "image"> {
+  image: string;
+}
