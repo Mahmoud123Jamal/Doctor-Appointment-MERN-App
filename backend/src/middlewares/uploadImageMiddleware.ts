@@ -31,5 +31,5 @@ const fileFilter = (
 export const upload = Multer({
   storage,
   fileFilter,
-  limits: { fileSize: 1024 * 1024 * 2 },
+  limits: { fileSize: 1024 * 1024 * 5 },
 });
