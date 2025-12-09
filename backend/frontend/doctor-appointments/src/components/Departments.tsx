@@ -46,7 +46,7 @@ function Departments() {
   }, []);
 
   return (
-    <div className="my-12 px-4">
+    <div className="my-4 px-4">
       {loading ? (
         <div className="loading loading-dots loading-xl"></div>
       ) : error ? (
