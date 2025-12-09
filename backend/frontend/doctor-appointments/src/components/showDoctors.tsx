@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import type { Doctor } from "../types/DoctorType";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa6";
 
 function ShowDoctors() {
   const [serverError, setServerError] = useState<string | null>(null);
@@ -59,8 +60,8 @@ function ShowDoctors() {
   }
 
   return (
-    <div className="bg-blue-50">
-      <h1 className="text-center text-bold ">Our doctors</h1>
+    <div className="bg-blue-50 ">
+      <h1 className="text-center font-bold text-3xl mb-3 ">Our doctors</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
         {doctors.map((doctor, index) => (
           <div
@@ -88,9 +89,19 @@ function ShowDoctors() {
                 Experience: {doctor.experience} years
               </p>
             </div>
-            <NavLink to="/allDoctors">See All Doctors</NavLink>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center my-4">
+        <div className="flex justify-center mt-4">
+          <Link
+            to="/allDoctors"
+            className="btn btn-primary flex items-center gap-2"
+          >
+            See All Doctors
+            <FaArrowRight />
+          </Link>
+        </div>
       </div>
     </div>
   );
