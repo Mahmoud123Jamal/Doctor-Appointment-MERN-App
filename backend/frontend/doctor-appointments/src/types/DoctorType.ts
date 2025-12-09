@@ -11,4 +11,5 @@ export interface Doctor extends Omit<DoctorForAppiontments, "_id"> {
 }
 export interface showDoctor extends Omit<Doctor, "image"> {
   image: string;
+  _id: string;
 }
