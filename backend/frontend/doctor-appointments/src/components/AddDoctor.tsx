@@ -1,6 +1,6 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import type { AddDoctorType } from "../types/DoctorType";
+import type { Doctor } from "../types/DoctorType";
 import { addDoctorSchema } from "../validations/addDoctorSchema";
 import api from "../api/axios";
 import { useState, useRef } from "react";
@@ -20,8 +20,8 @@ function AddDoctor() {
     reset,
     setValue,
     formState: { errors, isSubmitting },
-  } = useForm<AddDoctorType, any, AddDoctorType>({
-    resolver: yupResolver<AddDoctorType, any, any>(addDoctorSchema),
+  } = useForm<Doctor, any, Doctor>({
+    resolver: yupResolver<Doctor, any, any>(addDoctorSchema),
   });
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,7 @@ function AddDoctor() {
     });
   };
 
-  const onSubmit: SubmitHandler<AddDoctorType> = async (data) => {
+  const onSubmit: SubmitHandler<Doctor> = async (data) => {
     setServerError("");
 
     try {
