@@ -36,7 +36,6 @@ function DoctorDetails() {
     fetchDoctors();
   }, [id]);
 
-  // Loading State
   if (loading) {
     return (
       <p className="text-center mt-10 text-blue-600 font-semibold">
@@ -45,7 +44,6 @@ function DoctorDetails() {
     );
   }
 
-  // Error State
   if (serverError) {
     return (
       <p className="text-center mt-10 text-red-600 font-semibold">
@@ -62,7 +60,6 @@ function DoctorDetails() {
     );
   }
 
-  // Safe image source handling
   const imageSrc =
     typeof doctor.image === "string" ? doctor.image : "/avatar.jpg";
 
