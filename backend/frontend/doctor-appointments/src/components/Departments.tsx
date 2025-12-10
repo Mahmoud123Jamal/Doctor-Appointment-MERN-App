@@ -8,7 +8,8 @@ function Departments() {
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState<null | string>(null);
   const [activeTab, setActiveTab] = useState<string | null>(null);
-  const { error } = useToast();
+  const { success, error } = useToast();
+
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
@@ -29,7 +30,6 @@ function Departments() {
         if (!departmentList || !Array.isArray(departmentList)) {
           setErrors("Invalid data format received");
           error("Invalid data format received");
-
           return;
         }
 
@@ -50,10 +50,15 @@ function Departments() {
     fetchDepartments();
   }, []);
 
+  const showMsg = (name: string) => {
+    success("Read about " + name + "department");
+  };
   return (
     <div>
       {loading ? (
-        <LoadingDots />
+        <div className="flex items-center justify-center h-screen">
+          <LoadingDots />
+        </div>
       ) : errors ? (
         <div className="text-red-500">Error: {errors}</div>
       ) : (
@@ -83,7 +88,10 @@ function Departments() {
                               ? "bg-blue-500 text-white"
                               : "bg-white text-gray-800 hover:bg-blue-100"
                           }`}
-                          onClick={() => setActiveTab(dept._id)}
+                          onClick={() => {
+                            setActiveTab(dept._id);
+                            showMsg(dept.name);
+                          }}
                         >
                           {dept.name}
                         </button>
