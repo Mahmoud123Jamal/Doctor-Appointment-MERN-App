@@ -6,11 +6,14 @@ import { useAuth } from "../context/AuthContext";
 import type { DoctorForAppiontments } from "../types/DoctorType";
 import type { AppointmentFormInputs } from "../types/AppointmentType";
 import { AppointmentSchema } from "../validations/appointmentSchema";
+import { useToast } from "../hooks/useToast";
+import { LoadingBall } from "./Loadings";
 
 function AddAppointments() {
   const [doctors, setDoctors] = useState<DoctorForAppiontments[]>([]);
   const [serverError, setServerError] = useState("");
   const { user } = useAuth();
+  const { error, success } = useToast();
   const {
     register,
     handleSubmit,
@@ -24,7 +27,6 @@ function AddAppointments() {
     const fetchDoctors = async () => {
       try {
         const res = await api.get("/doctors/allDoctors");
-        console.log(res.data.data);
 
         setDoctors(res.data.data.doctors);
       } catch (err) {
@@ -38,7 +40,7 @@ function AddAppointments() {
     setServerError("");
     try {
       const token = localStorage.getItem("token");
-      const res = await api.post(
+      await api.post(
         "/appointments/createAppointment",
         {
           doctor: data.doctor,
@@ -51,10 +53,11 @@ function AddAppointments() {
           },
         }
       );
-      console.log("Appointment created:", res.data);
+      success("Appointment created successfully.");
+
       reset();
     } catch (err: any) {
-      console.error(err);
+      error("Error creating appointment.", err);
       setServerError(
         err.response?.data?.data?.message || "Error creating appointment"
       );
@@ -94,6 +97,7 @@ function AddAppointments() {
               <label className="block mb-1 font-medium">Date</label>
               <input
                 type="date"
+                min={new Date().toISOString().split("T")[0]}
                 {...register("date")}
                 className="input input-bordered w-full"
               />
@@ -118,7 +122,7 @@ function AddAppointments() {
               disabled={isSubmitting}
               className="btn btn-primary w-full rounded-full"
             >
-              {isSubmitting ? "Loading..." : "Add Appointment"}
+              {isSubmitting ? <LoadingBall /> : "Add Appointment"}
             </button>
           </form>
         </div>
