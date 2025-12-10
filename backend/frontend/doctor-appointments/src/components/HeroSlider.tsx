@@ -5,6 +5,7 @@ import slide3 from "../assets/images/slide3.jpg";
 import React from "react";
 import { heroSliderSettings as settings } from "../config/sliderSettings";
 import type { SlideItem } from "../types/slideTypes";
+import { Link } from "react-router-dom";
 function HeroSlider() {
   const slides: SlideItem[] = [
     {
@@ -40,9 +41,12 @@ function HeroSlider() {
                 {slide.title}
               </h2>
               <p className="text-lg md:text-2xl">{slide.description}</p>
-              <button className="btn btn-soft btn-primary mt-4 rounded-sm transition">
+              <Link
+                to="/about"
+                className="btn btn-soft btn-primary mt-4 rounded-sm transition"
+              >
                 Read More
-              </button>
+              </Link>
             </div>
           </div>
         ))}
