@@ -29,7 +29,6 @@ function Departments() {
         if (!departmentList || !Array.isArray(departmentList)) {
           setErrors("Invalid data format received");
           error("Invalid data format received");
-
           return;
         }
 
@@ -50,7 +49,7 @@ function Departments() {
     fetchDepartments();
   }, []);
   const showMsg = (name: string) => {
-    success("Read about " + name);
+    success("Read about " + name + "department");
   };
   return (
     <div>
