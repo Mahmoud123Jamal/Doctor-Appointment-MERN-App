@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 function CallToAction() {
   return (
-    <section className="bg-blue-50 py-12 px-6 text-center">
+    <section className="bg-blue-50 py-12 px-6 text-center mt-4">
       <div className="max-w-3xl mx-auto">
-        <h3 className="text-xl md:text-3xl font-semibold text-blue-700 mb-4">
+        <h3 className="text-xl md:text-3xl font-semibold text-blue-950 mb-4">
           In an emergency? Need help now?
         </h3>
 
@@ -11,9 +13,12 @@ function CallToAction() {
           assistance.
         </p>
 
-        <button className="btn bg-blue-600 hover:bg-blue-700 text-white rounded-md px-6 border-none">
+        <Link
+          to="/addAppointment"
+          className="btn btn-primary rounded-md px-6 border-none"
+        >
           Make An Appointment
-        </button>
+        </Link>
       </div>
     </section>
   );
