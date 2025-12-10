@@ -24,7 +24,7 @@ function Departments() {
 
         // Extract departments array from data
         const departmentList = res.data.data.departments;
-
+        console.log(departmentList);
         if (!departmentList || !Array.isArray(departmentList)) {
           setError("Invalid data format received");
           return;
@@ -97,9 +97,9 @@ function Departments() {
 
                         {dept.image && (
                           <img
-                            src={dept.image}
+                            src={`http://localhost:5000${dept.image}`}
                             alt={dept.name}
-                            className="w-full h-auto rounded shadow"
+                            className="w-full h-100 rounded shadow"
                           />
                         )}
                       </div>
