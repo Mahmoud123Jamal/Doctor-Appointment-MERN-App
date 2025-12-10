@@ -4,12 +4,13 @@ import * as yup from "yup";
 import api from "../api/axios";
 import { useState } from "react";
 import { addDepartmentSchema } from "../validations/addDepartmentSchema";
-
+import { useToast } from "../hooks/useToast";
+import { LoadingDots } from "./Loadings";
 type DepartmentType = yup.InferType<typeof addDepartmentSchema>;
 
 function AddDepartments() {
   const [serverError, setServerError] = useState("");
-
+  const { error, success } = useToast();
   const {
     register,
     handleSubmit,
@@ -30,18 +31,18 @@ function AddDepartments() {
       formData.append("image", fileList[0]);
       const token = localStorage.getItem("token");
 
-      const res = await api.post("/departments/addDepartment", formData, {
+      await api.post("/departments/addDepartment", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log("Department Created:", res.data);
+      success("Department created successfully.");
 
       reset();
     } catch (err: any) {
-      console.error(err);
+      error("Error creating department", err);
       setServerError(
         err.response?.data?.message || "Error creating department."
       );
@@ -92,7 +93,7 @@ function AddDepartments() {
             {...register("image")}
             type="file"
             accept="image/*"
-            className="input input-primary w-full"
+            className="input input-primary w-full cursor-pointer"
           />
           {errors.image && (
             <p className="text-red-600 text-sm">{errors.image.message}</p>
@@ -104,7 +105,7 @@ function AddDepartments() {
           disabled={isSubmitting}
           className="btn btn-primary w-full rounded-full"
         >
-          {isSubmitting ? "Loading..." : "Add Department"}
+          {isSubmitting ? <LoadingDots /> : "Add Department"}
         </button>
       </form>
     </div>
