@@ -51,7 +51,7 @@ function Departments() {
   }, []);
 
   const showMsg = (name: string) => {
-    success("Read about " + name + "department");
+    success(name);
   };
   return (
     <div>
