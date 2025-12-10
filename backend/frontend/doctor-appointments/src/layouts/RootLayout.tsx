@@ -21,7 +21,10 @@ const RootLayout = () => {
         ]
       : []),
     ...(user?.role === "user"
-      ? [{ to: "/addAppointment", label: "Add Appointment" }]
+      ? [
+          { to: "/addAppointment", label: "Add Appointment" },
+          { to: "/appointments", label: "MyAppointment" },
+        ]
       : []),
     ...(!user
       ? [
@@ -33,7 +36,7 @@ const RootLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full">
-      <header className="bg-blue-100 text-blue-950 p-4">
+      <header className="bg-blue-100 text-blue-950 p-4 sticky top-0 z-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
