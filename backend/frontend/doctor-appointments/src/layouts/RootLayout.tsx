@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/images/logo.webp";
 import { useAuth } from "../context/AuthContext";
 
@@ -12,7 +12,7 @@ const RootLayout = () => {
 
   const navItems = [
     { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
+    { to: "/about", label: "About Us" },
     { to: "/departments", label: "Departments" },
     ...(user?.role === "admin"
       ? [
@@ -22,6 +22,7 @@ const RootLayout = () => {
       : []),
     ...(user?.role === "user"
       ? [
+          { to: "/allDoctors", label: "Doctors" },
           { to: "/addAppointment", label: "Add Appointment" },
           { to: "/appointments", label: "MyAppointment" },
         ]
@@ -36,13 +37,13 @@ const RootLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full">
-      <header className="bg-blue-100 text-blue-950 p-4 sticky top-0 z-100">
+      <header className="bg-blue-50 text-blue-950 mb-1 p-4 shadow-md  sticky top-0 z-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <img src={logo} alt="App Logo" className="w-15 h-15 rounded-4xl" />
             <span className="font-bold text-xl">DoctorApp</span>
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden sm:flex items-center space-x-6">
@@ -53,7 +54,7 @@ const RootLayout = () => {
             ))}
 
             {user && (
-              <button onClick={logout} className="btn rounded-sm">
+              <button onClick={logout} className="btn btn-primary rounded-sm">
                 Logout
               </button>
             )}
@@ -92,7 +93,7 @@ const RootLayout = () => {
                   logout();
                   setIsOpen(false);
                 }}
-                className="btn rounded-sm"
+                className="btn btn-primary rounded-sm"
               >
                 Logout
               </button>
@@ -105,8 +106,14 @@ const RootLayout = () => {
         <Outlet />
       </main>
 
-      <footer className="bg-blue-100 text-blue-950 p-6 text-center">
-        © 2025 Doctor Appointments
+      <footer className="bg-blue-50 text-blue-950 p-6 text-center shadow-2xl border-t-2 border-blue-500">
+        <p className="text-sm">
+          &copy; {new Date().getFullYear()} Doctor Appointments
+        </p>
+
+        <p className="text-xs mt-1 opacity-75">
+          Developed and Maintained by **ENG/Mahmoud Jamal**
+        </p>
       </footer>
     </div>
   );
