@@ -60,13 +60,15 @@ function ShowAllDoctors() {
   }
 
   return (
-    <div className="bg-blue-50 mt-5">
-      <h1 className="text-center font-bold text-3xl mb-3 ">Our doctors</h1>
+    <div className="bg-blue-50 ">
+      <h1 className="text-center text-blue-950 font-bold text-3xl mb-3 ">
+        Our doctors
+      </h1>
       <div className="grid grid-cols-1  lg:grid-cols-3 gap-4 p-4">
         {doctors.map((doctor, index) => (
           <div
             key={index}
-            className="card lg:card-side bg-base-100 shadow-sm cursor-pointer rounded-lg "
+            className="card lg:card-side bg-white shadow-sm cursor-pointer rounded-lg transition-all duration-700 hover:scale-95 hover:bg-blue-200 "
           >
             <figure>
               <img
@@ -79,12 +81,14 @@ function ShowAllDoctors() {
               />
             </figure>
             <div className="card-body p-3">
-              <h2 className="card-title text-sm font-bold">{doctor.name}</h2>
+              <h2 className="card-title text-blue-950 text-sm font-bold">
+                {doctor.name}
+              </h2>
               <p className="text-xs text-gray-600">{doctor.specialization}</p>
               <p className="text-xs text-gray-500 mt-1">
                 {doctor.description?.slice(0, 100)}...
               </p>
-              <p className="text-xs font-semibold mt-1">
+              <p className="text-xs text-blue-950 font-semibold mt-1">
                 Experience: {doctor.experience} years
               </p>
               <div className="card-actions justify-end">
