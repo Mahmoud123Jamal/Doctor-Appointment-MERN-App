@@ -68,21 +68,31 @@ function AddAppointments() {
     <div>
       {user ? (
         <div className="max-w-md mx-auto p-4">
-          <h2 className="text-xl font-bold mb-4">Add Appointment</h2>
+          <h2 className="text-xl text-blue-950 font-bold mb-4">
+            Add Appointment
+          </h2>
 
           {serverError && <p className="text-red-600 mb-3">{serverError}</p>}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <label className="block mb-1 font-medium">Doctor</label>
+              <label className="block text-gray-600 mb-1 font-medium">
+                Doctor
+              </label>
               <select
                 {...register("doctor")}
-                className="input input-bordered w-full"
+                className="input input-bordered cursor-pointer placeholder:text-gray-600 input-primary w-full"
               >
-                <option value="">Select a doctor</option>
+                <option value="" disabled className="text-gray-600">
+                  Select a doctor
+                </option>
                 {Array.isArray(doctors) &&
                   doctors.map((doc) => (
-                    <option key={doc._id} value={doc._id}>
+                    <option
+                      key={doc._id}
+                      value={doc._id}
+                      className="text-gray-600"
+                    >
                       {doc.name}{" "}
                       {doc.specialization ? `- ${doc.specialization}` : ""}
                     </option>
@@ -94,22 +104,26 @@ function AddAppointments() {
             </div>
 
             <div>
-              <label className="block mb-1 font-medium">Date</label>
+              <label className="block text-gray-600 mb-1 font-medium">
+                Date
+              </label>
               <input
                 type="date"
                 min={new Date().toISOString().split("T")[0]}
                 {...register("date")}
-                className="input input-bordered w-full"
+                className="input input-bordered input-primary w-full "
               />
               {errors.date && (
                 <p className="text-red-600 text-sm">{errors.date.message}</p>
               )}
             </div>
             <div>
-              <label className="block mb-1 font-medium">Reason</label>
+              <label className="block text-gray-600 mb-1 font-medium">
+                Reason
+              </label>
               <textarea
                 {...register("reason")}
-                className="input input-bordered w-full"
+                className="input input-bordered input-primary w-full"
                 placeholder="Reason for appointment"
               />
               {errors.reason && (
