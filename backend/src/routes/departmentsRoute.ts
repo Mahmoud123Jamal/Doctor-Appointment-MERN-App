@@ -14,8 +14,8 @@ router.post(
   "/addDepartment",
   protect,
   authRole("admin"),
-  //   upload.single("image"),
-  //   multerErrorHandler,
+  upload.single("image"),
+  multerErrorHandler,
   createDepartment
 );
 router.get("/count", countDepartments);
