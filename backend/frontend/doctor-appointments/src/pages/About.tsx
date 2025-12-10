@@ -2,10 +2,10 @@ import { type FC } from "react";
 
 const About: FC = () => {
   return (
-    <section className="min-h-screen bg-base-100 py-16 px-6 md:px-12">
+    <section className="min-h-screen  py-16 px-6 md:px-12 ">
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-950 mb-4 ">
             About Our Healthcare Service
           </h1>
           <p className="text-lg text-gray-600">
@@ -14,8 +14,8 @@ const About: FC = () => {
           </p>
         </div>
 
-        <div className="card bg-blue-50 shadow-md p-8 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-3 text-blue-700">
+        <div className="card bg-white shadow-md p-8 rounded-xl transition-all duration-700 hover:scale-105 cursor-help hover:bg-blue-200">
+          <h2 className="text-2xl font-semibold mb-3 text-blue-950">
             Our Mission
           </h2>
           <p className="text-gray-700 leading-relaxed">
@@ -28,9 +28,9 @@ const About: FC = () => {
         </div>
 
         {/* Why Choose Us */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="card bg-blue-50 shadow p-6 rounded-xl text-center">
-            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+        <div className="grid md:grid-cols-3 gap-6 ">
+          <div className="card bg-white shadow p-6 rounded-xl text-center transition-all duration-700 hover:scale-105 cursor-help hover:bg-blue-200">
+            <h3 className="text-xl font-semibold text-blue-950 mb-2">
               Qualified Doctors
             </h3>
             <p className="text-gray-600">
@@ -39,8 +39,8 @@ const About: FC = () => {
             </p>
           </div>
 
-          <div className="card bg-blue-50 shadow p-6 rounded-xl text-center">
-            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+          <div className="card bg-white shadow p-6 rounded-xl text-center transition-all duration-700 hover:scale-105 cursor-help hover:bg-blue-200">
+            <h3 className="text-xl font-semibold text-blue-950 mb-2">
               Easy Booking
             </h3>
             <p className="text-gray-600">
@@ -49,8 +49,8 @@ const About: FC = () => {
             </p>
           </div>
 
-          <div className="card bg-blue-50 shadow p-6 rounded-xl text-center">
-            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+          <div className="card bg-white shadow p-6 rounded-xl text-center transition-all duration-700 hover:scale-105 cursor-help hover:bg-blue-200">
+            <h3 className="text-xl font-semibold text-blue-950 mb-2">
               Secure & Trusted
             </h3>
             <p className="text-gray-600">
@@ -60,8 +60,8 @@ const About: FC = () => {
           </div>
         </div>
 
-        <div className="card bg-blue-50 shadow-md p-8 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-3 text-blue-700">
+        <div className="card bg-white shadow-md p-8 rounded-xl transition-all duration-700 hover:scale-105 cursor-help hover:bg-blue-200">
+          <h2 className="text-2xl font-semibold mb-3 text-blue-950">
             Our Vision
           </h2>
           <p className="text-gray-700 leading-relaxed">
