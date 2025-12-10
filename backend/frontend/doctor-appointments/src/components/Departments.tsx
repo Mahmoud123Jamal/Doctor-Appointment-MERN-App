@@ -10,7 +10,7 @@ function Departments() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const { success, error } = useToast();
   const showMsg = (name: string) => {
-    success("read about" + name);
+    success("read about more" + name);
   };
   useEffect(() => {
     const fetchDepartments = async () => {
