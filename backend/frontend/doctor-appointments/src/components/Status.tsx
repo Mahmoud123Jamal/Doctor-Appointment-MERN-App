@@ -42,21 +42,21 @@ function Status() {
     },
   ];
   return (
-    <section className="flex flex-wrap justify-center gap-4 mb-4 ">
+    <section className="flex flex-wrap justify-center bg-blue-50  gap-4 ">
       {status.map((item, index) => (
         <div
           key={index}
-          className="card bg-blue-50 hover:bg-blue-200 hover:scale-105 cursor-pointer shadow-sm rounded-lg py-5 px-2 w-54 transition-all duration-700"
+          className="card bg-white hover:bg-blue-200 hover:scale-105 cursor-pointer shadow-sm rounded-lg py-12 px-2 w-54 transition-all duration-700"
         >
           <div className="flex items-center gap-2">
             <div className="avatar placeholder">
-              <div className="bg-accent text-primary-content rounded-full w-12 h-12 flex items-center justify-center">
-                <i className="text-blue-900 text-xl">{item.icon}</i>
+              <div className="bg-blue-600 hover:bg-blue-700 rounded-full w-12 h-12 flex items-center justify-center">
+                <i className=" text-white text-xl">{item.icon}</i>
               </div>
             </div>
 
             <div className="leading-tight">
-              <h2 className="font-semibold text-base">{item.count}</h2>
+              <h2 className="font-semibold text-blue-950">{item.count}</h2>
               <p className="text-sm text-gray-600">{item.label}</p>
             </div>
           </div>
