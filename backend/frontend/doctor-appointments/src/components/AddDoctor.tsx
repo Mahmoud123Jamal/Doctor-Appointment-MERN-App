@@ -5,11 +5,12 @@ import { addDoctorSchema } from "../validations/addDoctorSchema";
 import api from "../api/axios";
 import { useState, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
-
+import { useToast } from "../hooks/useToast";
+import { LoadingDots } from "./Loadings";
 function AddDoctor() {
   const [serverError, setServerError] = useState("");
   const [previewImage, setPreviewImage] = useState<string>("/avatar.jpg");
-
+  const { error, success } = useToast();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const { user } = useAuth();
@@ -48,19 +49,19 @@ function AddDoctor() {
 
       const token = localStorage.getItem("token");
 
-      const res = await api.post("/doctors/addDoctors", formData, {
+      await api.post("/doctors/addDoctors", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log("Doctor Created:", res.data);
+      success("Doctor created successfully.");
 
       reset();
       setPreviewImage("/avatar.jpg");
     } catch (err: any) {
-      console.error(err);
+      error("Error creating doctor", err);
       setServerError(err.response?.data?.message || "Error creating doctor.");
     }
   };
@@ -176,7 +177,7 @@ function AddDoctor() {
                 disabled={isSubmitting}
                 className="btn btn-primary w-full rounded-full"
               >
-                {isSubmitting ? "Loading..." : "Add Doctor"}
+                {isSubmitting ? <LoadingDots /> : "Add Doctor"}
               </button>
             </div>
           </form>
