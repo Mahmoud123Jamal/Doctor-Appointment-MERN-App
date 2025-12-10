@@ -9,7 +9,9 @@ import AddAppointments from "./components/AddAppointments";
 import AddDoctor from "./components/AddDoctor";
 import ShowAllDoctors from "./pages/ShowAllDoctors";
 import DoctorDetails from "./components/DoctorDetails";
-
+import AddDepartments from "./components/AddDepartments";
+import Departments from "./components/Departments";
+import MyAppiontmentsPage from "./pages/MyAppiontments";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
       { path: "/addDoctor", element: <AddDoctor /> },
       { path: "/allDoctors", element: <ShowAllDoctors /> },
       { path: "/doctor/:id", element: <DoctorDetails /> },
+      { path: "/departments", element: <Departments /> },
+
+      { path: "/addDepartment", element: <AddDepartments /> },
+      { path: "/appointments", element: <MyAppiontmentsPage /> },
     ],
   },
 ]);
