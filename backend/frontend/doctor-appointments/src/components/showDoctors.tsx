@@ -61,35 +61,38 @@ function ShowDoctors() {
 
   return (
     <div className="bg-blue-50 ">
-      <h1 className="text-center font-bold text-3xl mb-3 ">Our doctors</h1>
+      <h1 className="text-center text-blue-950 font-bold text-3xl mb-3 ">
+        Our doctors
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
-        {doctors.map((doctor, index) => (
-          <div
-            key={index}
-            className="card card-side shadow-xl hover:shadow-2xl  hover:scale-105 transition-all duration-500 cursor-pointer rounded-lg "
-          >
-            <figure className="w-24 h-30">
-              <img
-                src={
-                  typeof doctor.image === "string"
-                    ? doctor.image
-                    : "/avatar.jpg"
-                }
-                alt={doctor.name}
-                className="w-full h-full object-cover rounded-l-lg"
-              />
-            </figure>
-            <div className="card-body p-3">
-              <h2 className="card-title text-sm font-bold">{doctor.name}</h2>
-              <p className="text-xs text-gray-600">{doctor.specialization}</p>
-              <p className="text-xs text-gray-500 mt-1">
-                {doctor.description?.slice(0, 60)}...
-              </p>
-              <p className="text-xs font-semibold mt-1">
-                Experience: {doctor.experience} years
-              </p>
+        {doctors.map((doctor) => (
+          <Link key={doctor._id} to={`/doctor/${doctor._id}`}>
+            <div className="card card-side bg-white shadow-xl hover:shadow-2xl  hover:scale-105 transition-all duration-500 cursor-pointer rounded-lg ">
+              <figure className="w-24 h-30">
+                <img
+                  src={
+                    typeof doctor.image === "string"
+                      ? doctor.image
+                      : "/avatar.jpg"
+                  }
+                  alt={doctor.name}
+                  className="w-full h-full object-cover rounded-l-lg"
+                />
+              </figure>
+              <div className="card-body p-3">
+                <h2 className="card-title text-blue-950 text-sm font-bold">
+                  {doctor.name}
+                </h2>
+                <p className="text-xs text-gray-600">{doctor.specialization}</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {doctor.description?.slice(0, 60)}...
+                </p>
+                <p className="text-xs text-blue-950 font-semibold mt-1">
+                  Experience: {doctor.experience} years
+                </p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="flex justify-center my-4">
