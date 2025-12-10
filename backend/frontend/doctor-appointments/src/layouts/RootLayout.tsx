@@ -42,7 +42,7 @@ const RootLayout = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={logo} alt="App Logo" className="w-15 h-15 rounded-4xl" />
-            <span className="font-bold text-xl">DoctorApp</span>
+            <span className="font-bold text-xl">Menoufia General Hospital</span>
           </Link>
 
           {/* Desktop Nav */}
