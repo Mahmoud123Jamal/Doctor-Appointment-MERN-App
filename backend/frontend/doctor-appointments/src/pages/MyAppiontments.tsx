@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../api/axios";
 import type { Appointment } from "../types/AppointmentType";
-
+import { LoadingDots } from "../components/Loadings";
+import { useToast } from "../hooks/useToast";
 function MyAppointmentsPage() {
   const { user } = useAuth();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [serverError, setServerError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const { success, error } = useToast();
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
@@ -20,7 +21,8 @@ function MyAppointmentsPage() {
         });
         const allAppointments = res.data.data?.appointments || [];
         setAppointments(allAppointments);
-      } catch (err) {
+      } catch (err: any) {
+        error("Error fetching appointments.", err);
         setServerError("Something went wrong while fetching appointments.");
       } finally {
         setLoading(false);
@@ -36,16 +38,17 @@ function MyAppointmentsPage() {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAppointments((prev) => prev.filter((appt) => appt._id !== id));
+      success("Appointment deleted successfully.");
     } catch {
-      alert("Failed to delete appointment.");
+      error("Failed to delete appointment.");
     }
   };
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-blue-600 font-semibold">
-        Loading Appointments...
-      </p>
+      <div className="flex items-center justify-center h-screen">
+        <LoadingDots />
+      </div>
     );
   if (serverError)
     return (
@@ -63,7 +66,9 @@ function MyAppointmentsPage() {
   return (
     user?.role === "user" && (
       <div className="max-w-3xl mx-auto mt-8 px-4">
-        <h2 className="text-2xl font-bold mb-6 text-center">My Appointments</h2>
+        <h2 className="text-2xl text-blue-950 font-bold mb-6 text-center">
+          My Appointments
+        </h2>
         <div className="space-y-4">
           {appointments.map((appt) => {
             if (!appt.doctor) return null;
@@ -75,7 +80,7 @@ function MyAppointmentsPage() {
             return (
               <div
                 key={appt._id}
-                className="flex items-center justify-between bg-white shadow p-4 rounded-lg border"
+                className="flex items-center justify-between bg-white shadow p-4 rounded-lg border transition-all duration-700 hover:scale-105 cursor-pointer hover:bg-blue-200"
               >
                 <div className="flex items-center gap-4">
                   <img
@@ -85,22 +90,28 @@ function MyAppointmentsPage() {
                   />
                   <div>
                     <p className=" text-lg">
-                      <span className="text-gray-600">Doctor :</span>{" "}
-                      <span className="font-semibold">{appt.doctor.name}</span>
+                      <span className="text-blue-950 font-semibold">
+                        Doctor :
+                      </span>{" "}
+                      <span className="text-gray-600">{appt.doctor.name}</span>
                     </p>
-                    <p className="text-gray-600">
-                      <span className="font-semibold">Reason:</span>
-                      {appt.reason}
+                    <p className="text-lg">
+                      <span className=" text-blue-950 font-semibold">
+                        Reason:
+                      </span>
+                      <span className=" text-gray-600">{appt.reason}</span>
                     </p>
-                    <p className="text-gray-600">
-                      <span className="font-semibold">Date:</span>
-                      {new Date(appt.date).toLocaleDateString()}
+                    <p className="text-lg">
+                      <span className="font-semibold text-blue-950">Date:</span>
+                      <span className="text-gray-600">
+                        {new Date(appt.date).toLocaleDateString()}
+                      </span>
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => handleDelete(appt._id)}
-                  className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
+                  className="text-white cursor-pointer btn btn-error "
                 >
                   Delete
                 </button>
