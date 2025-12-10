@@ -9,6 +9,9 @@ function Departments() {
   const [errors, setErrors] = useState<null | string>(null);
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const { success, error } = useToast();
+  const showMsg = (name: string) => {
+    success("read about" + name);
+  };
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
@@ -48,9 +51,7 @@ function Departments() {
 
     fetchDepartments();
   }, []);
-  const showMsg = (name: string) => {
-    success("Read about " + name + "department");
-  };
+
   return (
     <div>
       {loading ? (
