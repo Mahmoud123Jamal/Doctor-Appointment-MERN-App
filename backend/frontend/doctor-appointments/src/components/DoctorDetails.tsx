@@ -127,7 +127,7 @@ function DoctorDetails() {
 
         {/* =================  Doctor Details ================= */}
         <div className="lg:col-span-2 flex justify-center">
-          <div className="card w-full max-w-2xl bg-white shadow-xl rounded-xl p-6">
+          <div className="card w-full max-w-2xl bg-white shadow-xl rounded-xl p-6 transition-all duration-700 hover:scale-105 cursor-pointer hover:bg-blue-200">
             <figure className="flex justify-center">
               <img
                 src={imageSrc}
@@ -137,7 +137,7 @@ function DoctorDetails() {
             </figure>
 
             <div className="card-body text-center mt-4">
-              <h2 className="text-2xl font-bold text-gray-800">
+              <h2 className="text-2xl font-bold text-blue-950">
                 {doctor.name}
               </h2>
 
@@ -151,7 +151,7 @@ function DoctorDetails() {
 
               <p className="text-sm font-medium text-gray-600 mt-4">
                 Experience:{" "}
-                <span className="font-bold text-gray-800">
+                <span className="font-bold text-blue-950">
                   {doctor.experience} years
                 </span>
               </p>
