@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
-
+import { useToast } from "../hooks/useToast";
 function CallToAction() {
+  const { success } = useToast();
+  const showMsg = () => {
+    success("You can make an appointment now");
+  };
   return (
     <section className="bg-blue-50 py-12 px-6 text-center mt-4">
       <div className="max-w-3xl mx-auto">
@@ -16,6 +20,7 @@ function CallToAction() {
         <Link
           to="/addAppointment"
           className="btn btn-primary rounded-md px-6 border-none"
+          onClick={showMsg}
         >
           Make An Appointment
         </Link>
