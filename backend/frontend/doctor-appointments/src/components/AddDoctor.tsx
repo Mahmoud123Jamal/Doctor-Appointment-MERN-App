@@ -69,8 +69,10 @@ function AddDoctor() {
   return (
     <>
       {user ? (
-        <div className="max-w-3xl mx-auto p-4 shadow-lg hover:scale-95 transition-all duration-700 rounded-lg shadow-blue-200 my-4 cursor-pointer">
-          <h2 className="text-xl text-center font-bold mb-5">Add New Doctor</h2>
+        <div className="max-w-3xl bg-white mx-auto p-4 shadow-lg hover:scale-95 transition-all duration-700 rounded-lg shadow-blue-200 my-4 cursor-pointer">
+          <h2 className="text-xl text-blue-950 text-center font-bold mb-5">
+            Add New Doctor
+          </h2>
 
           {serverError && <p className="text-red-600">{serverError}</p>}
 
@@ -113,7 +115,9 @@ function AddDoctor() {
             {/* RIGHT — Form Fields */}
             <div className="md:col-span-2 space-y-4">
               <div>
-                <label className="block mb-1 font-medium">Doctor Name</label>
+                <label className="block text-gray-600 mb-1 font-medium">
+                  Doctor Name
+                </label>
                 <input
                   {...register("name")}
                   type="text"
@@ -126,7 +130,9 @@ function AddDoctor() {
               </div>
 
               <div>
-                <label className="block mb-1 font-medium">Specialization</label>
+                <label className="block text-gray-600 mb-1 font-medium">
+                  Specialization
+                </label>
                 <input
                   {...register("specialization")}
                   type="text"
@@ -141,7 +147,7 @@ function AddDoctor() {
               </div>
 
               <div>
-                <label className="block mb-1 font-medium">
+                <label className="block text-gray-600 mb-1 font-medium">
                   Experience (years)
                 </label>
                 <input
@@ -159,7 +165,9 @@ function AddDoctor() {
               </div>
 
               <div>
-                <label className="block mb-1 font-medium">Description</label>
+                <label className="block text-gray-600 mb-1 font-medium">
+                  Description
+                </label>
                 <textarea
                   {...register("description")}
                   className="textarea textarea-primary w-full"
@@ -183,9 +191,10 @@ function AddDoctor() {
           </form>
         </div>
       ) : (
-        <div className="h-screen text-center place-content-center ">
-          <p className="text-red-600 font-extrabold">
-            Sorry, you must login as Admin User.
+        <div className="min-h-screen flex items-center justify-center w-full">
+          <p className="text-xl text-red-600 text-center p-8 bg-red-50 rounded-lg shadow-lg border border-red-200">
+            You are not authorized to add a department. This action is for
+            administrators only.
           </p>
         </div>
       )}
