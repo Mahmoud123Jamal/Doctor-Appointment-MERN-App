@@ -104,7 +104,7 @@ function Register() {
             disabled={isSubmitting}
             className="btn btn-primary w-full rounded-full"
           >
-            {isSubmitting ? <LoadingDots /> : "Login"}
+            {isSubmitting ? <LoadingDots /> : "Register"}
           </button>
         </form>
       </div>

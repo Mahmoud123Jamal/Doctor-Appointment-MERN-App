@@ -3,12 +3,16 @@ import api from "../api/axios";
 import type { showDoctor } from "../types/DoctorType";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
-
+import { LoadingDots } from "../components/Loadings";
+import { useToast } from "../hooks/useToast";
 function ShowAllDoctors() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [doctors, setDoctors] = useState<showDoctor[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const { error, success } = useToast();
+  const showMsg = (msg: string) => {
+    success(msg);
+  };
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
@@ -19,13 +23,14 @@ function ShowAllDoctors() {
         const allDoctors = res.data.data?.doctors;
 
         if (!allDoctors || res.data.status !== "success") {
+          error("Error fetching doctors");
           setServerError(res.data.message || "Failed to fetch doctors");
           return;
         }
 
         setDoctors(allDoctors);
-      } catch (err) {
-        console.error("Error fetching doctors:", err);
+      } catch (err: any) {
+        error("Error fetching doctors:", err);
         setServerError("Something went wrong while fetching doctors.");
       } finally {
         setLoading(false);
@@ -37,9 +42,9 @@ function ShowAllDoctors() {
 
   if (loading) {
     return (
-      <p className="text-center mt-10 text-blue-600 font-semibold">
-        Loading doctors...
-      </p>
+      <div className="flex items-center justify-center h-screen">
+        <LoadingDots />
+      </div>
     );
   }
 
@@ -92,7 +97,11 @@ function ShowAllDoctors() {
                 Experience: {doctor.experience} years
               </p>
               <div className="card-actions justify-end">
-                <Link to={`/doctor/${doctor._id}`} className="btn btn-primary">
+                <Link
+                  onClick={() => showMsg("Doctor details")}
+                  to={`/doctor/${doctor._id}`}
+                  className="btn btn-primary"
+                >
                   show details
                 </Link>
               </div>
@@ -102,7 +111,11 @@ function ShowAllDoctors() {
       </div>
       <div className="flex justify-center my-4">
         <div className="flex justify-center mt-4">
-          <Link to="/" className="btn btn-primary flex items-center gap-2">
+          <Link
+            onClick={() => showMsg("Back to Home Page")}
+            to="/"
+            className="btn btn-primary flex items-center gap-2"
+          >
             <FaArrowLeft />
             Back To Home
           </Link>

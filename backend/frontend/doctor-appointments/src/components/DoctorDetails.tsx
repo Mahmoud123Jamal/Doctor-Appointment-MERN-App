@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import type { showDoctor } from "../types/DoctorType";
 import api from "../api/axios";
 import { useParams, Link } from "react-router-dom";
-
+import { LoadingDots } from "./Loadings";
+import { useToast } from "../hooks/useToast";
 function DoctorDetails() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [doctor, setDoctor] = useState<showDoctor | null>(null);
   const [relatedDoctors, setRelatedDoctors] = useState<showDoctor[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const { error } = useToast();
   const { id } = useParams();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ function DoctorDetails() {
         const doctorData = res.data.data?.doctor;
 
         if (!doctorData || res.data.status !== "success") {
+          error("Error fetching doctor details", res.data.message);
           setServerError(res.data.message || "Failed to fetch doctor details");
           return;
         }
@@ -32,7 +34,8 @@ function DoctorDetails() {
           doctorData.specialization.toLowerCase(),
           doctorData._id
         );
-      } catch (err) {
+      } catch (err: any) {
+        error("Error fetching doctor details", err);
         setServerError("Something went wrong while fetching doctor details.");
       } finally {
         setLoading(false);
@@ -65,9 +68,9 @@ function DoctorDetails() {
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-blue-600 font-semibold">
-        Loading...
-      </p>
+      <div className="flex items-center justify-center h-screen">
+        <LoadingDots />
+      </div>
     );
 
   if (serverError)

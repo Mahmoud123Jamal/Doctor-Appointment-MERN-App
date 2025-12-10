@@ -3,12 +3,16 @@ import api from "../api/axios";
 import type { showDoctor } from "../types/DoctorType";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
-
+import { LoadingDots } from "./Loadings";
+import { useToast } from "../hooks/useToast";
 function ShowDoctors() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [doctors, setDoctors] = useState<showDoctor[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const { error, success } = useToast();
+  const showMsg = () => {
+    success("See All Doctor ");
+  };
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
@@ -19,13 +23,14 @@ function ShowDoctors() {
         const allDoctors = res.data.data?.doctors;
 
         if (!allDoctors || res.data.status !== "success") {
+          error("Error fetching doctors");
           setServerError(res.data.message || "Failed to fetch doctors");
           return;
         }
 
         setDoctors(allDoctors.slice(0, 3));
-      } catch (err) {
-        console.error("Error fetching doctors:", err);
+      } catch (err: any) {
+        error("Error fetching doctors:", err);
         setServerError("Something went wrong while fetching doctors.");
       } finally {
         setLoading(false);
@@ -37,9 +42,9 @@ function ShowDoctors() {
 
   if (loading) {
     return (
-      <p className="text-center mt-10 text-blue-600 font-semibold">
-        Loading doctors...
-      </p>
+      <div className="flex items-center justify-center h-screen">
+        <LoadingDots />
+      </div>
     );
   }
 
@@ -100,6 +105,7 @@ function ShowDoctors() {
           <Link
             to="/allDoctors"
             className="btn btn-primary flex items-center gap-2"
+            onClick={showMsg}
           >
             See All Doctors
             <FaArrowRight />

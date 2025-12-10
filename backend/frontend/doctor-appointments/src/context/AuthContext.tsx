@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import type { AuthContextType, DecodedUser } from "../types/authTypes";
+import { useToast } from "../hooks/useToast";
 
 const AuthContext = createContext<AuthContextType | null>(null);
-
+const { warning } = useToast();
 type AuthProviderProps = {
   children: React.ReactNode;
 };
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    warning("You have been logged out.");
   };
 
   return (
