@@ -1,17 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../api/axios";
-
-interface Appointment {
-  _id: string;
-  date: string;
-  reason: string;
-  doctor: {
-    _id: string;
-    name: string;
-    image: string;
-  } | null;
-}
+import type { Appointment } from "../types/AppointmentType";
 
 function MyAppointmentsPage() {
   const { user } = useAuth();
