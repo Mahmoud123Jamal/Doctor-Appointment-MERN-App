@@ -70,6 +70,14 @@ const About: FC = () => {
             quality care they deserve.
           </p>
         </div>
+        <iframe
+          src="public/videos/about.mp4"
+          title="about.mp4"
+          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          className=" w-full aspect-video
+ border-8 border-blue-600"
+        />
       </div>
     </section>
   );
