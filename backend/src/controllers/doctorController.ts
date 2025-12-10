@@ -27,7 +27,28 @@ export const getAllDoctors = catchAsync(async (req: Request, res: Response) => {
   const doctors = await Doctor.find();
   res.status(200).json({ status: "success", data: { doctors } });
 });
-
+export const relatedSpecializations = catchAsync(
+  async (req: Request, res: Response) => {
+    const { specialization } = req.params;
+    if (!specialization) {
+      return res
+        .status(404)
+        .json({
+          status: "fail",
+          data: { message: "specialization not found." },
+        });
+    }
+    const doctors = await Doctor.find({
+      specialization: { $regex: new RegExp(specialization, "i") },
+    });
+    if (!doctors) {
+      return res
+        .status(404)
+        .json({ status: "fail", data: { message: "Doctors not found." } });
+    }
+    res.status(200).json({ status: "success", data: { doctors } });
+  }
+);
 export const getDoctorById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const doctor = await Doctor.findById(id);
