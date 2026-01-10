@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/images/logo.webp";
 import { useAuth } from "../context/AuthContext";
+import { BackButton } from "../components/BackBtn";
 
 const RootLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,10 +41,19 @@ const RootLayout = () => {
       <header className="bg-blue-50 text-blue-950 mb-1 p-4 shadow-md  sticky top-0 z-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="App Logo" className="w-15 h-15 rounded-4xl" />
-            <span className="font-bold text-xl">Menoufia General Hospital</span>
-          </Link>
+          <div className="flex items-center">
+            <BackButton />
+            <Link to="/" className="flex items-center space-x-2">
+              <img
+                src={logo}
+                alt="App Logo"
+                className="w-15 h-15 rounded-4xl"
+              />
+              <span className="font-bold text-xl  xs:block">
+                Menoufia Hospital
+              </span>
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden sm:flex items-center space-x-6">
