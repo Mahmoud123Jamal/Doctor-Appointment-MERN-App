@@ -8,8 +8,16 @@ const RootLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
 
-  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    isActive ? "underline font-bold" : "hover:underline";
+  const navLinkClass = ({ isActive }: { isActive: boolean }) => {
+    const baseClasses =
+      "relative px-1 py-2 transition-all duration-300 ease-in-out text-base font-medium";
+
+    const stateClasses = isActive
+      ? "text-[#00B5FF] font-bold"
+      : "text-blue-950 hover:text-[#00B5FF]";
+
+    return `${baseClasses} ${stateClasses} group`;
+  };
 
   const navItems = [
     { to: "/", label: "Home" },
@@ -38,25 +46,23 @@ const RootLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full">
-      <header className="bg-blue-50 text-blue-950 mb-1 p-4 shadow-md  sticky top-0 z-100">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
+      <header className="bg-blue-50 font-semibold shadow-md sticky top-0 z-100 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+          <div className="flex items-center gap-2 md:gap-4">
             <BackButton />
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2 shrink-0">
               <img
                 src={logo}
                 alt="App Logo"
-                className="w-15 h-15 rounded-4xl"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
               />
-              <span className="font-bold text-xl  xs:block">
+              <span className="font-bold text-blue-950 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-tight block">
                 Menoufia Hospital
               </span>
             </Link>
           </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden sm:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8">
             {navItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={navLinkClass}>
                 {item.label}
@@ -64,34 +70,37 @@ const RootLayout = () => {
             ))}
 
             {user && (
-              <button onClick={logout} className="btn btn-primary rounded-sm">
+              <button onClick={logout} className="btn btn-info btn-md">
                 Logout
               </button>
             )}
           </nav>
 
-          {/* Hamburger */}
           <button
-            className="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="lg:hidden p-2 rounded-md hover:bg-blue-100 transition-colors focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
             {isOpen ? (
-              <span className="text-2xl">&#x2715;</span>
+              <span className="text-2xl leading-none">&#x2715;</span>
             ) : (
-              <span className="text-2xl">&#9776;</span>
+              <span className="text-2xl leading-none">&#9776;</span>
             )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <nav className="md:hidden mt-2 flex flex-col justify-center items-center space-y-3">
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-blue-100 bg-white ${
+            isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <nav className="flex flex-col p-4 space-y-4 shadow-inner">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 onClick={() => setIsOpen(false)}
-                className={navLinkClass}
+                className="text-lg font-medium py-2 px-4 hover:bg-blue-50 rounded-md transition-colors"
               >
                 {item.label}
               </NavLink>
@@ -103,27 +112,29 @@ const RootLayout = () => {
                   logout();
                   setIsOpen(false);
                 }}
-                className="btn btn-primary rounded-sm"
+                className="btn btn-info btn-md w-full"
               >
                 Logout
               </button>
             )}
           </nav>
-        )}
+        </div>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 overflow-x-hidden">
         <Outlet />
       </main>
 
-      <footer className="bg-blue-50 text-blue-950 p-6 text-center shadow-2xl border-t-2 border-blue-500">
-        <p className="text-sm">
-          &copy; {new Date().getFullYear()} Doctor Appointments
-        </p>
-
-        <p className="text-xs mt-1 opacity-75">
-          Developed and Maintained by **ENG/Mahmoud Jamal**
-        </p>
+      <footer className="bg-blue-50 text-blue-950 p-6 md:p-8 text-center border-t border-blue-200 mt-auto w-full">
+        <div className="max-w-7xl mx-auto space-y-2">
+          <p className="text-sm font-medium">
+            &copy; {new Date().getFullYear()} Doctor Appointments
+          </p>
+          <p className="text-xs opacity-80">
+            Developed and Maintained by{" "}
+            <span className="font-bold">ENG/Mahmoud Jamal</span>
+          </p>
+        </div>
       </footer>
     </div>
   );
