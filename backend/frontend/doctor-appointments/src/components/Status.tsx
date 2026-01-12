@@ -50,7 +50,7 @@ function Status() {
         >
           <div className="flex items-center gap-2">
             <div className="avatar placeholder">
-              <div className="bg-blue-600 hover:bg-blue-700 rounded-full w-12 h-12 flex items-center justify-center">
+              <div className="bg-[#00B5FF] hover:bg-[#077397] rounded-full w-12 h-12 flex items-center justify-center">
                 <i className=" text-white text-xl">{item.icon}</i>
               </div>
             </div>
