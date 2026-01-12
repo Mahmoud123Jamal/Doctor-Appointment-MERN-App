@@ -70,7 +70,7 @@ function AddDoctor() {
     <>
       {user ? (
         <div className="max-w-3xl bg-white mx-auto p-4 shadow-lg hover:scale-95 transition-all duration-700 rounded-lg shadow-blue-200 my-4 cursor-pointer">
-          <h2 className="text-xl text-blue-950 text-center font-bold mb-5">
+          <h2 className="text-xl text-[#00B5FF] text-center font-bold mb-5">
             Add New Doctor
           </h2>
 
@@ -92,7 +92,7 @@ function AddDoctor() {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="btn btn-outline btn-primary w-[90%]"
+                className="btn btn-outline btn-info w-[90%]"
               >
                 Choose Image
               </button>
@@ -121,7 +121,7 @@ function AddDoctor() {
                 <input
                   {...register("name")}
                   type="text"
-                  className="input input-primary w-full"
+                  className="input input-info w-full"
                   placeholder="Doctor name"
                 />
                 {errors.name && (
@@ -136,7 +136,7 @@ function AddDoctor() {
                 <input
                   {...register("specialization")}
                   type="text"
-                  className="input input-primary w-full"
+                  className="input input-info w-full"
                   placeholder="Specialization"
                 />
                 {errors.specialization && (
@@ -153,7 +153,7 @@ function AddDoctor() {
                 <input
                   type="number"
                   {...register("experience")}
-                  className="input input-primary w-full"
+                  className="input input-info w-full"
                   min={1}
                   placeholder="Experience (years)"
                 />
@@ -170,7 +170,7 @@ function AddDoctor() {
                 </label>
                 <textarea
                   {...register("description")}
-                  className="textarea textarea-primary w-full"
+                  className="textarea textarea-info w-full"
                   placeholder="Description...."
                 ></textarea>
                 {errors.description && (
@@ -183,7 +183,7 @@ function AddDoctor() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn btn-primary w-full rounded-full"
+                className="btn btn-info w-full rounded-full"
               >
                 {isSubmitting ? <LoadingDots /> : "Add Doctor"}
               </button>
