@@ -104,7 +104,7 @@ function ShowDoctors() {
         <div className="flex justify-center mt-4">
           <Link
             to="/allDoctors"
-            className="btn btn-primary flex items-center gap-2"
+            className="btn btn-info flex items-center gap-2"
             onClick={showMsg}
           >
             See All Doctors
