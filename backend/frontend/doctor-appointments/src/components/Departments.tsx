@@ -85,7 +85,7 @@ function Departments() {
                         <button
                           className={`w-full text-left px-4 py-2 rounded transition mb-1 cursor-pointer ${
                             activeTab === dept._id
-                              ? "bg-blue-500 text-white"
+                              ? "bg-[#00B5FF] text-black font-semibold"
                               : "bg-white text-gray-800 hover:bg-blue-100"
                           }`}
                           onClick={() => {
