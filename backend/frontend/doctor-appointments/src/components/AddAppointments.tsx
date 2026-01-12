@@ -81,7 +81,7 @@ function AddAppointments() {
               </label>
               <select
                 {...register("doctor")}
-                className="input input-bordered cursor-pointer placeholder:text-gray-600 input-primary w-full"
+                className="input input-bordered cursor-pointer placeholder:text-gray-600 input-info w-full"
               >
                 <option value="" disabled className="text-gray-600">
                   Select a doctor
@@ -111,7 +111,7 @@ function AddAppointments() {
                 type="date"
                 min={new Date().toISOString().split("T")[0]}
                 {...register("date")}
-                className="input input-bordered input-primary w-full "
+                className="input input-bordered input-info w-full "
               />
               {errors.date && (
                 <p className="text-red-600 text-sm">{errors.date.message}</p>
@@ -123,7 +123,7 @@ function AddAppointments() {
               </label>
               <textarea
                 {...register("reason")}
-                className="input input-bordered input-primary w-full"
+                className="input input-bordered input-info w-full h-24 resize-y"
                 placeholder="Reason for appointment"
               />
               {errors.reason && (
@@ -134,7 +134,7 @@ function AddAppointments() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn btn-primary w-full rounded-full"
+              className="btn btn-info w-full rounded-full"
             >
               {isSubmitting ? <LoadingBall /> : "Add Appointment"}
             </button>
