@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { HiArrowLeft } from "react-icons/hi"; // Optional: npm install react-icons
 
 export const BackButton = () => {
   const navigate = useNavigate();
@@ -7,10 +6,23 @@ export const BackButton = () => {
   return (
     <button
       onClick={() => navigate(-1)}
-      className="btn btn-ghost lg:hidden gap-2 normal-case hover:bg-base-200 transition-all duration-200"
+      className="btn btn-sm bg-transparent border-blue-400/50 text-blue-600 hover:bg-blue-50 hover:border-blue-600 gap-2 normal-case transition-all duration-300 backdrop-blur-sm"
     >
-      <HiArrowLeft className="w-5 h-5" />
-      <span>Back</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="w-4 h-4"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+        />
+      </svg>
+      Back
     </button>
   );
 };
