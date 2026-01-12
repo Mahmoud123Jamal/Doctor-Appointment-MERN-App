@@ -100,7 +100,7 @@ function ShowAllDoctors() {
                 <Link
                   onClick={() => showMsg("Doctor details")}
                   to={`/doctor/${doctor._id}`}
-                  className="btn btn-primary"
+                  className="btn btn-info btn-sm"
                 >
                   show details
                 </Link>
@@ -114,7 +114,7 @@ function ShowAllDoctors() {
           <Link
             onClick={() => showMsg("Back to Home Page")}
             to="/"
-            className="btn btn-primary flex items-center gap-2"
+            className="btn btn-info flex items-center gap-2"
           >
             <FaArrowLeft />
             Back To Home
