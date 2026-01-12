@@ -83,7 +83,7 @@ function AddDepartments() {
                 {...register("name")}
                 type="text"
                 id="name"
-                className="input input-bordered input-primary w-full"
+                className="input input-bordered input-info w-full"
                 placeholder="e.g., Cardiology"
               />
               {errors.name && (
@@ -104,7 +104,7 @@ function AddDepartments() {
                 {...register("description")}
                 id="description"
                 rows={4}
-                className="w-full input input-bordered input-primary  resize-y"
+                className="w-full input input-bordered input-info  resize-y"
                 placeholder="A brief description of the department's focus..."
               ></textarea>
               {errors.description && (
@@ -126,7 +126,7 @@ function AddDepartments() {
                 type="file"
                 id="image"
                 accept="image/*"
-                className="w-full border-blue-800 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border  rounded-lg p-1 cursor-pointer"
+                className="w-full border-[#00B5FF] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-[#00B5FF] file:text-[#00B5FF] hover:file:bg-blue-100 border  rounded-lg p-1 cursor-pointer"
               />
               {errors.image && (
                 <p className="text-red-600 text-sm mt-1">
@@ -138,7 +138,7 @@ function AddDepartments() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn btn-primary mt-2 py-3 px-4 rounded-full 
+              className="btn btn-info mt-2 py-3 px-4 rounded-full 
                           disabled:bg-gray-400 flex items-center justify-center"
             >
               {isSubmitting ? <LoadingDots /> : "Add Department"}
