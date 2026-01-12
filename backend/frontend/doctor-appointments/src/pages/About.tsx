@@ -76,7 +76,7 @@ const About: FC = () => {
           allowFullScreen
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           className=" w-full aspect-video
- border-8 border-blue-600"
+ border-8 border-[#00B5FF]"
         />
       </div>
     </section>
