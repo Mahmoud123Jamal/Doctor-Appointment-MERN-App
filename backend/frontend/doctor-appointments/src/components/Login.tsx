@@ -64,7 +64,7 @@ function Login() {
             </label>
             <input
               type="email"
-              className="input input-bordered input-primary w-full"
+              className="input input-bordered input-info w-full"
               {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
@@ -78,7 +78,7 @@ function Login() {
             </label>
             <input
               type="password"
-              className="input input-bordered input-primary w-full"
+              className="input input-bordered input-info w-full"
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
@@ -89,7 +89,7 @@ function Login() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="btn btn-primary w-full rounded-full"
+            className="btn btn-info w-full rounded-full"
           >
             {isSubmitting ? <LoadingDots /> : "Login"}
           </button>

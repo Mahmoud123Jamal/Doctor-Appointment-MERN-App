@@ -64,7 +64,7 @@ function Register() {
             <label className="block text-gray-600 font-medium mb-1">Name</label>
             <input
               type="text"
-              className="input input-bordered input-primary w-full"
+              className="input input-bordered input-info w-full"
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -77,7 +77,7 @@ function Register() {
             </label>
             <input
               type="email"
-              className="input input-bordered input-primary w-full"
+              className="input input-bordered input-info w-full"
               {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
@@ -91,7 +91,7 @@ function Register() {
             </label>
             <input
               type="password"
-              className="input input-bordered input-primary w-full"
+              className="input input-bordered input-info w-full"
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
@@ -102,7 +102,7 @@ function Register() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="btn btn-primary w-full rounded-full"
+            className="btn btn-info w-full rounded-full"
           >
             {isSubmitting ? <LoadingDots /> : "Register"}
           </button>
