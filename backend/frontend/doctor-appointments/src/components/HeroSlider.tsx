@@ -48,7 +48,7 @@ function HeroSlider() {
               <p className="text-lg md:text-2xl">{slide.description}</p>
               <Link
                 to="/about"
-                className="btn btn-soft btn-primary mt-4 rounded-sm transition"
+                className="btn btn-soft btn-info mt-4 rounded-sm transition"
                 onClick={showMsg}
               >
                 Read More
