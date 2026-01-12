@@ -19,7 +19,7 @@ function CallToAction() {
 
         <Link
           to="/addAppointment"
-          className="btn btn-primary rounded-md px-6 border-none"
+          className="btn btn-info rounded-md px-6 border-none"
           onClick={showMsg}
         >
           Make An Appointment
