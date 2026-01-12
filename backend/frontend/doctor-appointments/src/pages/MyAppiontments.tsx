@@ -80,41 +80,49 @@ function MyAppointmentsPage() {
             return (
               <div
                 key={appt._id}
-                className="flex items-center justify-between bg-white shadow p-4 rounded-lg border transition-all duration-700 hover:scale-105 cursor-pointer hover:bg-blue-200"
+                className="flex flex-col sm:flex-row items-center sm:justify-between bg-white shadow-md p-4 rounded-lg border transition-all duration-300 hover:scale-[1.02] cursor-pointer hover:bg-blue-50 group"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                  {/* Profile Image */}
                   <img
                     src={imageUrl}
                     alt={appt.doctor.name}
-                    className="w-16 h-16 rounded-full object-cover border"
+                    className="w-20 h-20 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-blue-100 shadow-sm"
                   />
-                  <div>
-                    <p className=" text-lg">
-                      <span className="text-blue-950 font-semibold">
-                        Doctor :
-                      </span>{" "}
+
+                  {/* Details Container */}
+                  <div className="text-center sm:text-left flex-1 space-y-1">
+                    <p className="text-base md:text-lg">
+                      <span className="text-blue-950 font-bold">Doctor:</span>{" "}
                       <span className="text-gray-600">{appt.doctor.name}</span>
                     </p>
-                    <p className="text-lg">
-                      <span className=" text-blue-950 font-semibold">
-                        Reason:
-                      </span>
-                      <span className=" text-gray-600">{appt.reason}</span>
+
+                    <p className="text-base md:text-lg truncate max-w-[250px] sm:max-w-xs lg:max-w-md">
+                      <span className="text-blue-950 font-bold">Reason:</span>{" "}
+                      <span className="text-gray-600">{appt.reason}</span>
                     </p>
-                    <p className="text-lg">
-                      <span className="font-semibold text-blue-950">Date:</span>
+
+                    <p className="text-sm md:text-base">
+                      <span className="font-semibold text-blue-950">Date:</span>{" "}
                       <span className="text-gray-600">
                         {new Date(appt.date).toLocaleDateString()}
                       </span>
                     </p>
                   </div>
                 </div>
-                <button
-                  onClick={() => handleDelete(appt._id)}
-                  className="text-white cursor-pointer btn btn-error "
-                >
-                  Delete
-                </button>
+
+                {/* Button Section */}
+                <div className="mt-4 sm:mt-0 w-full sm:w-auto">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(appt._id);
+                    }}
+                    className="w-full sm:w-auto text-white cursor-pointer btn bg-red-600 hover:bg-red-700 border-none transition-all duration-300 px-6"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             );
           })}
